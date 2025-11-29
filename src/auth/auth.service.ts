@@ -28,6 +28,7 @@ export class AuthService {
     }
     return null;
   }
+
   async login(credentials: Credentials): Promise<UserInfo> {
     const { username, password } = credentials;
     const user = await this.validateUser(
@@ -37,8 +38,13 @@ export class AuthService {
     if (!user) {
       throw new UnauthorizedException("The passed credentials are incorrect");
     }
-    //@ts-ignore
-    const accessToken = await this.tokenService.createToken(username, password);
+
+    const accessToken = await this.tokenService.createToken(
+      username,
+      password,
+      user.roles
+    );
+
     return {
       accessToken,
       ...user,

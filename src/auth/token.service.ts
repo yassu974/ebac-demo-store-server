@@ -1,6 +1,5 @@
-import { ITokenService } from "./ITokenService";
-//@ts-ignore
-// eslint-disable-next-line import/no-unresolved
+import { Injectable } from "@nestjs/common";
 import { TokenServiceBase } from "./base/token.service.base";
-//@ts-ignore
-export class TokenService extends TokenServiceBase implements ITokenService {}
+
+@Injectable()
+export class TokenService extends TokenServiceBase {}
